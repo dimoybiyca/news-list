@@ -15,17 +15,17 @@ export class DetailsEffects {
   private listService: ArticleService = inject(ArticleService);
   private snackBarService: SnackBarService = inject(SnackBarService);
 
-  loadArticle$ = createEffect(() => {
-    return this.actions$.pipe(
+  loadArticle$ = createEffect(() =>
+    this.actions$.pipe(
       ofType(getArticleAction),
-      switchMap((action) => {
-        return this.listService.getArticle(action.id).pipe(
+      switchMap((action) =>
+        this.listService.getArticle(action.id).pipe(
           map((article) => getArticleSuccessAction({ article })),
           catchError((error) => of(getArticleFailureAction({ error })))
-        );
-      })
-    );
-  });
+        )
+      )
+    )
+  );
 
   loadArticleError$ = createEffect(
     () =>

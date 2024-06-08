@@ -28,14 +28,14 @@ export class ListEffects {
     this.actions$.pipe(
       ofType(getListAction),
       withLatestFrom(this.store.select(searchTermSelector)),
-      switchMap(([action, search]) => {
-        return this.listService.getArticles(search).pipe(
+      switchMap(([action, search]) =>
+        this.listService.getArticles(search).pipe(
           map((response: TGetArticlesResponse) =>
             getListSuccessAction({ response })
           ),
           catchError((error) => of(getListFailureAction({ error })))
-        );
-      })
+        )
+      )
     )
   );
 
@@ -60,6 +60,17 @@ export class ListEffects {
         ofType(getListFailureAction),
         tap(() => {
           this.snackBarService.open('Failed to load articles');
+        })
+      ),
+    { dispatch: false }
+  );
+
+  loadNextPageError$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(getNextPageFailureAction),
+        tap(() => {
+          this.snackBarService.open('Failed to load next page');
         })
       ),
     { dispatch: false }

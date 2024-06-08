@@ -10,45 +10,29 @@ import { TGetArticlesResponse } from '../../types/get-articles-response.type';
 export class ArticleService {
   private http: HttpClient = inject(HttpClient);
 
+  private readonly API_ROUTES = {
+    getArticles: () => '/articles',
+    getArticle: (id: number) => `/articles/${id}`,
+  };
+
   getArticles(search?: string): Observable<TGetArticlesResponse> {
     let params = new HttpParams();
     params = params.set('limit', 9);
     search && (params = params.set('search', search ?? ''));
 
     return this.http
-      .get<TGetArticlesResponse>(
-        'https://api.spaceflightnewsapi.net/v4/articles',
-        { params }
-      )
-      .pipe(
-        map(this.truncateSummary),
-        map((response) => this.sortArticles(response, search ?? ''))
-      );
+      .get<TGetArticlesResponse>(this.API_ROUTES.getArticles(), { params })
+      .pipe(map((response) => this.sortArticles(response, search ?? '')));
   }
 
   getArticle(id: number): Observable<TArticle> {
-    return this.http.get<TArticle>(
-      `https://api.spaceflightnewsapi.net/v4/articles/${id}`
-    );
+    return this.http.get<TArticle>(this.API_ROUTES.getArticle(id));
   }
 
   getNextPage(next: string, search?: string): Observable<TGetArticlesResponse> {
-    return this.http.get<TGetArticlesResponse>(next).pipe(
-      map(this.truncateSummary),
-      map((response) => this.sortArticles(response, search ?? ''))
-    );
-  }
-
-  private truncateSummary(
-    response: TGetArticlesResponse
-  ): TGetArticlesResponse {
-    return {
-      ...response,
-      results: response.results.map((article) => ({
-        ...article,
-        summary: article.summary.slice(0, 100),
-      })),
-    };
+    return this.http
+      .get<TGetArticlesResponse>(next)
+      .pipe(map((response) => this.sortArticles(response, search ?? '')));
   }
 
   private sortArticles(
@@ -79,7 +63,10 @@ export class ArticleService {
 
   private countMatches(text: string, search: string): number {
     const terms = search.split(' ').map((term) => term.toLowerCase());
-    const words = text.split(' ').map((word) => word.toLowerCase());
+    const words = text
+      .substring(0, 100)
+      .split(' ')
+      .map((word) => word.toLowerCase());
 
     return words.filter((word) => terms.some((term) => term === word)).length;
   }
