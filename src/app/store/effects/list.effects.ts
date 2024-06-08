@@ -15,7 +15,7 @@ import {
   getNextPageSuccessAction,
   setSearchTermAction,
 } from '../actions/list.actions';
-import { searchTermSelector } from '../selectors/list.selectors';
+import { searchQuerySelector } from '../selectors/list.selectors';
 
 @Injectable()
 export class ListEffects {
@@ -27,7 +27,7 @@ export class ListEffects {
   loadArticles$ = createEffect(() =>
     this.actions$.pipe(
       ofType(getListAction),
-      withLatestFrom(this.store.select(searchTermSelector)),
+      withLatestFrom(this.store.select(searchQuerySelector)),
       switchMap(([action, search]) =>
         this.listService.getArticles(search).pipe(
           map((response: TGetArticlesResponse) =>
@@ -42,7 +42,7 @@ export class ListEffects {
   loadNextPage$ = createEffect(() =>
     this.actions$.pipe(
       ofType(getNextPageAction),
-      withLatestFrom(this.store.select(searchTermSelector)),
+      withLatestFrom(this.store.select(searchQuerySelector)),
       switchMap(([action, search]) => {
         return this.listService.getNextPage(action.next, search).pipe(
           map((response: TGetArticlesResponse) =>

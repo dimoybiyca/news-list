@@ -14,7 +14,7 @@ import { Observable } from 'rxjs';
 import { HighlightCommonDirective } from '../../../shared/directives/higlight-common/highlight-common.directive';
 import { OrdinalDatePipe } from '../../../shared/pipes/ordinal-date/ordinal-date.pipe';
 import { TArticle } from '../../../shared/types/article-type';
-import { searchTermSelector } from '../../../store/selectors/list.selectors';
+import { searchQuerySelector } from '../../../store/selectors/list.selectors';
 
 @Component({
   selector: 'app-list-item',
@@ -38,8 +38,8 @@ export class ListItemComponent {
   private store = inject(Store);
   private router: Router = inject(Router);
 
-  searchTerm$: Observable<string | null> = this.store.pipe(
-    select(searchTermSelector)
+  searchQuery$: Observable<string | null> = this.store.pipe(
+    select(searchQuerySelector)
   );
 
   onReadMore(): void {

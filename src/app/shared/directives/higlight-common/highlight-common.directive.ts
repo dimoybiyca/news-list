@@ -14,7 +14,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
   standalone: true,
 })
 export class HighlightCommonDirective implements OnChanges {
-  @Input() appHighlightCommon: string | null = null;
+  @Input() textToHighlight: string | null = null;
   @Input() searchQuery: string | null = null;
 
   private el: ElementRef = inject(ElementRef);
@@ -22,20 +22,20 @@ export class HighlightCommonDirective implements OnChanges {
   private renderer: Renderer2 = inject(Renderer2);
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['appHighlightCommon'] || changes['searchQuery']) {
+    if (changes['textToHighlight'] || changes['searchQuery']) {
       this.updateHighlight();
     }
   }
 
   updateHighlight(): void {
-    if (!this.appHighlightCommon) {
+    if (!this.textToHighlight) {
       return;
     }
 
     this.setHtmlContent(
       this.searchQuery
-        ? this.highlight(this.appHighlightCommon, this.searchQuery)
-        : this.appHighlightCommon
+        ? this.highlight(this.textToHighlight, this.searchQuery)
+        : this.textToHighlight
     );
   }
 

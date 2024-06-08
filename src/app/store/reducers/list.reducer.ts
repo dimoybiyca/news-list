@@ -14,7 +14,7 @@ export const listReducers = createReducer(
   initialListState,
   on(setSearchTermAction, (state, action) => ({
     ...state,
-    searchTerm: action.searchTerm,
+    searchQuery: action.searchTerm,
   })),
   on(getListAction, (state) => ({
     ...state,

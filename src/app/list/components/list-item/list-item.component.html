@@ -17,15 +17,17 @@
 
     <mat-card-title
       class="article-title"
-      [appHighlightCommon]="article.title"
-      [searchQuery]="searchTerm$ | async"
+      appHighlightCommon
+      [textToHighlight]="article.title"
+      [searchQuery]="searchQuery$ | async"
     >
     </mat-card-title>
 
     <p
       class="article-summary"
-      [appHighlightCommon]="article.summary"
-      [searchQuery]="searchTerm$ | async"
+      appHighlightCommon
+      [textToHighlight]="article.summary"
+      [searchQuery]="searchQuery$ | async"
     ></p>
 
     <mat-card-actions class="article-actions">

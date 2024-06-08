@@ -9,9 +9,9 @@ export const articlesSelector = createSelector(
   (list: TListState) => list.articles
 );
 
-export const searchTermSelector = createSelector(
+export const searchQuerySelector = createSelector(
   listSelector,
-  (list: TListState) => list.searchTerm
+  (list: TListState) => list.searchQuery
 );
 
 export const countSelector = createSelector(

@@ -1,7 +1,7 @@
 import { TListState } from '../../shared/types/list-state.type';
 
 export const initialListState: TListState = {
-  searchTerm: '',
+  searchQuery: '',
   count: 0,
   articles: [],
   next: null,

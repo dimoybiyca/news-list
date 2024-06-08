@@ -2,7 +2,7 @@ import { TArticle } from './article-type';
 import { TBackendError } from './backend-error.type';
 
 export type TListState = {
-  searchTerm: string;
+  searchQuery: string;
   articles: TArticle[];
   isLoading: boolean;
   next: string | null;
