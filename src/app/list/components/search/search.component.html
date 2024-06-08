@@ -1,0 +1,12 @@
+<div class="search">
+  <mat-label class="search-label">Filter by keywords</mat-label>
+  <mat-form-field class="search-field">
+    <mat-icon class="search-icon" matPrefix svgIcon="app-search"></mat-icon>
+    <input
+      matInput
+      placeholder="Search"
+      [(ngModel)]="searchTerm"
+      (ngModelChange)="onSearchChange($event)"
+    />
+  </mat-form-field>
+</div>

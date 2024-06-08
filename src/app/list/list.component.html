@@ -1,0 +1,14 @@
+<app-search (searchChange)="onSearchChange($event)"></app-search>
+
+<app-divider
+  class="divider"
+  [value]="(count$ | async) || 0"
+  [isLoading]="(isLoading$ | async) || false"
+></app-divider>
+
+<app-articles-grid
+  class="articles"
+  *ngIf="articles$ | async as articles"
+  [articles]="articles"
+  (scrolled)="onScroll()"
+></app-articles-grid>

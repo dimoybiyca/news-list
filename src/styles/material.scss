@@ -1,0 +1,27 @@
+@use "@angular/material" as mat;
+@include mat.core();
+
+$news-list-primary: mat.define-palette(mat.$indigo-palette);
+$news-list-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+$news-list-warn: mat.define-palette(mat.$red-palette);
+
+$news-list-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $news-list-primary,
+      accent: $news-list-accent,
+      warn: $news-list-warn,
+    ),
+    typography: mat.define-typography-config(),
+    density: 0,
+  )
+);
+
+@include mat.all-component-themes($news-list-theme);
+
+mat-icon {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}

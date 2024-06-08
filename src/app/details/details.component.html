@@ -1,0 +1,26 @@
+<ng-container *ngIf="article$ | async as article">
+  <img [src]="article.image_url" alt="article-cover" class="cover" />
+
+  <div class="details">
+    <h1 class="details-title">{{ article.title }}</h1>
+
+    <div class="details-content">
+      <p class="details-article">{{ article.summary }}</p>
+      <p class="details-article">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Id ut molestias
+        hic, voluptatem dignissimos iusto! Esse dignissimos sapiente nisi
+        architecto aperiam, odio amet exercitationem error molestias sunt dolore
+        nesciunt blanditiis! Iure id quis earum saepe illum, praesentium
+        assumenda quae incidunt tempore quos optio molestias cumque maxime
+        perferendis voluptas velit. Architecto adipisci voluptates facere
+        voluptatum ab alias pariatur eaque molestiae non. Consectetur est dicta
+        iusto consequatur sequi quia facilis, necessitatibus quam temporibus
+      </p>
+    </div>
+  </div>
+
+  <button class="details-btn" mat-button (click)="onBack()">
+    <mat-icon class="details-arrow" svgIcon="app-arrow-left"></mat-icon>
+    <span>Back to homepage</span>
+  </button>
+</ng-container>

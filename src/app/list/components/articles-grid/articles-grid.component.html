@@ -1,0 +1,14 @@
+<mat-grid-list
+  [cols]="cols"
+  rowHeight="530"
+  gutterSize="35px"
+  infiniteScroll
+  (scrolled)="onScroll()"
+  (window:resize)="onResize($event)"
+>
+  @for(article of articles;track $index) {
+  <mat-grid-tile>
+    <app-list-item [article]="article"></app-list-item>
+  </mat-grid-tile>
+  }
+</mat-grid-list>

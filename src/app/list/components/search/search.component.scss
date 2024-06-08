@@ -1,0 +1,35 @@
+.search {
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+
+  &-label {
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  &-field {
+    max-width: 600px;
+  }
+
+  &-icon {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+:host ::ng-deep {
+  .mdc-line-ripple {
+    display: none;
+  }
+
+  .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: var(--white);
+    border: 1px solid var(--light-gray);
+    border-radius: 5px;
+  }
+
+  .mat-mdc-form-field-infix {
+    padding-top: 15px;
+  }
+}

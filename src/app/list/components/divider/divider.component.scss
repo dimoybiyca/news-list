@@ -1,0 +1,9 @@
+.divider {
+  border-bottom: 1px solid var(--light-gray);
+  font-weight: 600;
+  padding-bottom: 5px;
+
+  &-value {
+    padding-left: 5px;
+  }
+}
