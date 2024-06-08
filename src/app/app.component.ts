@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
       this.matIconRegistry.addSvgIcon(
         `app-${icon}`,
         this.domSanitizer.bypassSecurityTrustResourceUrl(
-          `../assets/icons/${icon}.svg`
+          `/assets/icons/${icon}.svg`
         )
       );
     });
