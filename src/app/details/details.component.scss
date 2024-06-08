@@ -5,7 +5,8 @@
   right: 0;
   margin: 0 auto;
   height: 275px;
-  width: 1440px;
+  width: 100%;
+  max-width: 1440px;
   object-fit: cover;
   z-index: -1;
 }
